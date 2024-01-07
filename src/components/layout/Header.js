@@ -6,6 +6,7 @@ function Header() {
   const session = useSession()
   
   console.log(session);
+  
   const status = session?.status
   return (
     <header className="flex items-center justify-between">

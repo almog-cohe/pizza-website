@@ -9,15 +9,21 @@ section.hero {
 
 input[type="email"],
 input[type="password"],
-input[type="text"] {
-  @apply block w-full my-2 rounded-xl;
+input[type="text"],
+input[type="tel"] {
+  @apply block w-full mb-2 rounded-xl;
   @apply border p-2 border-gray-300 bg-gray-100;
 }
 
 input[type="email"]:disabled,
 input[type="password"]:disabled,
-input[type="text"]:disabled {
-  @apply bg-gray-300 cursor-progress;
+input[type="text"]:disabled,
+input[type="tel"]:disabled {
+  @apply bg-gray-300 text-gray-500 border-0 cursor-progress;
+}
+
+#profileForm input[type="email"]:disabled {
+  @apply bg-gray-300 text-gray-500 border-0 cursor-default;
 }
 
 button {
@@ -29,4 +35,8 @@ button[type="submit"], .submit {
 }
 button[type="submit"]:disabled, .submit:disabled {
   @apply cursor-progress bg-red-400;
+}
+
+label {
+  @apply text-gray-500 text-sm
 }

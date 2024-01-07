@@ -7,6 +7,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginInProgress, setLoginInProgress] = useState(false);
+  
   async function handleFormSubmit(e) {
     e.preventDefault();
     setLoginInProgress(true)

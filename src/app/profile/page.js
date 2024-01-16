@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import UserTabs from "@/components/layout/UserTabs.js";
 
 function ProfilePage() {
   const session = useSession();
@@ -16,20 +17,24 @@ function ProfilePage() {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [profileFetched, setProfileFetch] = useState(false);
   const { status } = session;
 
   useEffect(() => {
     if (status === "authenticated") {
       setUserName(session.data.user.name);
-      fetch('/api/profile').then(response => {
-        response.json().then(data => {
-          setPhone(data.phone)
-          setStreetAddress(data.srteetAddress)
-          setPostalCode(data.postalCode)
-          setCity(data.city)
-          setCountry(data.country)
-        })
-      })
+      fetch("/api/profile").then((response) => {
+        response.json().then((data) => {
+          setPhone(data.phone);
+          setStreetAddress(data.srteetAddress);
+          setPostalCode(data.postalCode);
+          setCity(data.city);
+          setCountry(data.country);
+          setIsAdmin(data.admin);
+          setProfileFetch(true);
+        });
+      });
     }
   }, [session, status]);
 
@@ -46,7 +51,7 @@ function ProfilePage() {
         phone,
         postalCode,
         city,
-        country 
+        country,
       }),
     }).catch(new Error("Error"));
 
@@ -69,7 +74,7 @@ function ProfilePage() {
     }
   }
 
-  if (status === "loading") {
+  if (status === "loading" || !profileFetched) {
     return "Loading...";
   }
 
@@ -81,8 +86,8 @@ function ProfilePage() {
 
   return (
     <section className="mt-8">
-      <h1 className="text-center text-primary text-4xl mb-4">Profile</h1>
-      <div className="max-w-md mx-auto">
+      <UserTabs isAdmin={isAdmin} />
+      <div className="max-w-md mx-auto mt-8">
         {/* {saved && (
           <h2 className="text-center bg bg-green-100 p-4 rounded-lg border  border-green-300">
             Profile saved!
@@ -128,21 +133,46 @@ function ProfilePage() {
             <label>Email</label>
             <input type="email" disabled value={session.data.user.email} />
             <label>Phone number</label>
-            <input type="tel" placeholder="Phone number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+            <input
+              type="tel"
+              placeholder="Phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
             <label>Street address</label>
-            <input type="text" placeholder="Street address" value={srteetAddress} onChange={(e) => setStreetAddress(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Street address"
+              value={srteetAddress}
+              onChange={(e) => setStreetAddress(e.target.value)}
+            />
             <div className="flex gap-2">
               <div>
                 <label>Postal code</label>
-                <input type="text" placeholder="Postal code" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder="Postal code"
+                  value={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                />
               </div>
               <div>
                 <label>City</label>
-                <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder="City"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
               </div>
             </div>
             <label>Country</label>
-            <input type="text" placeholder="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            />
             <button type="submit">Save</button>
           </form>
         </div>

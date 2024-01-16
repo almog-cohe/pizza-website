@@ -2,8 +2,6 @@ import Hero from "@/components/layout/Hero";
 import HomeMenu from "@/components/layout/HomeMenu";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 
-
-
 export default function Home() {
   return (
     <>
@@ -31,7 +29,10 @@ export default function Home() {
           mainHeader={"Contact us"}
         />
         <div className="my-8">
-          <a className="text-4xl text-gray-600 underline" href="tel:050-5050505">
+          <a
+            className="text-4xl text-gray-600 underline"
+            href="tel:050-5050505"
+          >
             050-5050505
           </a>
         </div>

@@ -14,8 +14,9 @@ function HomeMenu() {
             alt={"sallad"}
             style={{
               maxWidth: "100%",
-              height: "auto"
-            }} />
+              height: "auto",
+            }}
+          />
         </div>
         <div className="absolute -top-[100px] right-0 -z-10">
           <Image
@@ -25,12 +26,13 @@ function HomeMenu() {
             alt={"sallad"}
             style={{
               maxWidth: "100%",
-              height: "auto"
-            }} />
+              height: "auto",
+            }}
+          />
         </div>
       </div>
       <div className="text-center mb-4">
-        <SectionHeaders subHeader={'CHECK OUT'} mainHeader={'Menu'} />
+        <SectionHeaders subHeader={"CHECK OUT"} mainHeader={"Menu"} />
       </div>
       <div className="grid grid-cols-3 gap-4">
         <MenuItem />

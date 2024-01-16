@@ -36,8 +36,9 @@ function Hero() {
           // sizes="100vw"
           priority={true}
           style={{
-            objectFit: "contain"
-          }} />
+            objectFit: "contain",
+          }}
+        />
       </div>
     </section>
   );

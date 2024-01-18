@@ -8,6 +8,9 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/libs/mongoConnect.js";
 
 export const authOptions = {
+  session: {
+    strategy: 'jwt'
+  },
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -34,7 +37,6 @@ export const authOptions = {
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password);
 
-        console.log({ passwordOk });
         if (passwordOk) {
           return user;
         }

@@ -24,7 +24,7 @@ function Header() {
           <>
             <Link href={"/profile"} className="whitespace-nowrap">
               Hello,{" "}
-              {session.data.user.name.split(" ")[0] || session.data.user.email}
+              {session.data?.user.name?.split(" ")[0] || session.data.user.email}
             </Link>
             <button
               onClick={() => signOut()}

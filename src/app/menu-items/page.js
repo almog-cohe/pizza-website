@@ -6,7 +6,9 @@ import UserTabs from "@/components/layout/UserTabs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+
 function MenuItemsPage() {
+
   const { loading, data } = useProfile();
   const [menuItems, setMenuItems] = useState([]);
 

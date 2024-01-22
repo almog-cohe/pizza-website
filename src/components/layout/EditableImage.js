@@ -18,7 +18,7 @@ function EditableImage({ link, setLink }) {
       <div className="flex justify-center m-2">
         {link && (
           <Image
-            src={link}
+            src={""}
             className="rounded"
             width={80}
             height={80}

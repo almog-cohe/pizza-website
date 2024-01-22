@@ -19,11 +19,7 @@ function UserTabs({ isAdmin }) {
             Categories
           </Link>
           <Link
-            className={
-              path === "/menu-items" || path === "/menu-items/new"
-                ? "active"
-                : ""
-            }
+            className={path.includes("/menu-items") ? "active" : ""}
             href={"/menu-items"}
           >
             Menu Items

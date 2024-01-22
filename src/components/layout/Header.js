@@ -5,8 +5,6 @@ import Link from "next/link";
 function Header() {
   const session = useSession();
 
-  console.log(session);
-
   const status = session?.status;
   return (
     <header className="flex items-center justify-between">
@@ -24,7 +22,8 @@ function Header() {
           <>
             <Link href={"/profile"} className="whitespace-nowrap">
               Hello,{" "}
-              {session.data?.user.name?.split(" ")[0] || session.data.user.email}
+              {session.data?.user.name?.split(" ")[0] ||
+                session.data.user.email}
             </Link>
             <button
               onClick={() => signOut()}

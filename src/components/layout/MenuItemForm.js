@@ -12,6 +12,7 @@ function MenuItemForm({ onSubmit, menuItem }) {
   );
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(menuItem?.category || "");
+  const [imageId, setImageId] = useState(menuItem?.imageId || "");
 
   useEffect(() => {
     fetch("/api/categories")
@@ -31,13 +32,14 @@ function MenuItemForm({ onSubmit, menuItem }) {
           sizes,
           extraIngredientPrices,
           category,
+          imageId,
         })
       }
       className="mt-8 max-w-md mx-auto"
     >
       <div className="flex gap-4">
         <div>
-          <EditableImage />
+          <EditableImage link={imageId} setLink={setImageId} />
         </div>
         <div className="grow">
           <label>Item name</label>
@@ -58,7 +60,11 @@ function MenuItemForm({ onSubmit, menuItem }) {
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories?.length > 0 &&
-              categories.map((c) => <option value={c._id}>{c.name}</option>)}
+              categories.map((c, index) => (
+                <option key={index + 1} value={c._id}>
+                  {c.name}
+                </option>
+              ))}
           </select>
           <label>Base price</label>
           <input

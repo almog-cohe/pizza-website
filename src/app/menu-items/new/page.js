@@ -2,7 +2,6 @@
 
 import useProfile from "@/components/UseProfile";
 import UserTabs from "@/components/layout/UserTabs";
-import EditableImage from "@/components/layout/EditableImage.js";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";

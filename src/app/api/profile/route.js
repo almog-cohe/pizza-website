@@ -7,11 +7,11 @@ import { UserInfo } from "@/app/models/UserInfo.js";
 export async function PUT(req) {
   mongoose.connect(process.env.MONGO_URL);
   const data = await req.json();
-  const { name, image, ...otherUserInfo } = data;
+  const { name, imageId, ...otherUserInfo } = data;
   const session = await getServerSession(authOptions);
   const email = session.user.email;
 
-  await User.updateOne({ email }, { name, image });
+  await User.updateOne({ email }, { name, imageId });
 
   await UserInfo.findOneAndUpdate({ email }, otherUserInfo, { upsert: true });
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { CldImage } from "next-cloudinary";
+import { CldUploadButton } from "next-cloudinary";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Image from "next/image";
@@ -20,6 +22,7 @@ function ProfilePage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [profileFetched, setProfileFetch] = useState(false);
   const { status } = session;
+  const [imageId, setImageId] = useState("");
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -32,6 +35,7 @@ function ProfilePage() {
           setCity(data.city);
           setCountry(data.country);
           setIsAdmin(data.admin);
+          setImageId(data.imageId);
           setProfileFetch(true);
         });
       });
@@ -52,6 +56,7 @@ function ProfilePage() {
         postalCode,
         city,
         country,
+        imageId,
       }),
     }).catch(new Error("Error"));
 
@@ -62,17 +67,17 @@ function ProfilePage() {
     });
   }
 
-  async function handleFileChange(e) {
-    const files = e.target.files;
-    if (files?.length === 1) {
-      const data = new FormData();
-      data.set("file", files[0]);
-      fetch("/api/upload", {
-        method: "POST",
-        body: data,
-      });
-    }
-  }
+  // async function handleFileChange(e) {
+  //   const files = e.target.files;
+  //   if (files?.length === 1) {
+  //     const data = new FormData();
+  //     data.set("file", files[0]);
+  //     fetch("/api/upload", {
+  //       method: "POST",
+  //       body: data,
+  //     });
+  //   }
+  // }
 
   if (status === "loading" || !profileFetched) {
     return "Loading...";
@@ -102,19 +107,36 @@ function ProfilePage() {
           <div>
             <div className="bg-gray-50 p-1 rounded-md">
               <div className="flex justify-center m-2">
-                <Image
-                  src={userImage}
-                  className="rounded"
-                  width={80}
-                  height={80}
-                  alt={"avatar"}
-                />
+                {userImage ? (
+                  <Image
+                    width="140"
+                    height="140"
+                    src={userImage}
+                    alt="Avatar"
+                  />
+                ) : (
+                  <CldImage
+                    width="140"
+                    height="140"
+                    src={imageId || "re4hdsbv5pwfn2ccgsxm"}
+                    alt="Avatar"
+                  />
+                )}
               </div>
               <label>
-                <input type="file" hidden onChange={handleFileChange} />
-                <span className="block border border-gray-300 rounded-lg text-center cursor-pointer">
+                {/* <input type="file" hidden onChange={handleFileChange} /> */}
+                <CldUploadButton
+                  className="text-gray-500 font-thin rounded-lg p-0"
+                  options={{
+                    multiple: false,
+                  }}
+                  onUpload={(result) => {
+                    setImageId(result.info.public_id);
+                  }}
+                  uploadPreset="jsdc6csm"
+                >
                   Edit
-                </span>
+                </CldUploadButton>
               </label>
             </div>
           </div>

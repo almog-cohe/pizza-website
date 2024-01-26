@@ -1,37 +1,28 @@
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
+import { CldUploadButton } from "next-cloudinary";
 
 function EditableImage({ link, setLink }) {
-  async function handleFileChange(e) {
-    const files = e.target.files;
-    if (files?.length === 1) {
-      const data = new FormData();
-      data.set("file", files[0]);
-      fetch("/api/upload", {
-        method: "POST",
-        body: data,
-      });
-    }
-  }
-
   return (
     <div className="bg-gray-50 p-1 rounded-md">
       <div className="flex justify-center m-2">
         {link && (
-          <Image
-            src={""}
-            className="rounded"
-            width={80}
-            height={80}
-            alt={"Item photo"}
-          />
+          <CldImage width="100" height="100" src={link} alt="No image" />
         )}
         {!link && <div>No image</div>}
       </div>
       <label>
-        <input type="file" hidden onChange={handleFileChange} />
-        <span className="block border border-gray-300 rounded-lg text-center cursor-pointer">
+        <CldUploadButton
+          className="text-gray-500 font-thin rounded-lg p-0"
+          options={{
+            multiple: false,
+          }}
+          onUpload={(result) => {
+            setLink(result.info.public_id);
+          }}
+          uploadPreset="jsdc6csm"
+        >
           Edit
-        </span>
+        </CldUploadButton>
       </label>
     </div>
   );

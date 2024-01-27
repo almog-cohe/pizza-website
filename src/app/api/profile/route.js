@@ -7,25 +7,46 @@ import { UserInfo } from "@/app/models/UserInfo.js";
 export async function PUT(req) {
   mongoose.connect(process.env.MONGO_URL);
   const data = await req.json();
-  const { name, imageId, ...otherUserInfo } = data;
-  const session = await getServerSession(authOptions);
-  const email = session.user.email;
+  const { _id, name, imageId, ...otherUserInfo } = data;
 
-  await User.updateOne({ email }, { name, imageId });
+  let filter = {};
 
-  await UserInfo.findOneAndUpdate({ email }, otherUserInfo, { upsert: true });
+  if (_id) {
+    filter = { _id };
+  } else {
+    const session = await getServerSession(authOptions);
+    const email = session.user.email;
+
+    filter = { email };
+  }
+
+  const user = await User.findOne(filter);
+  await User.updateOne(filter, { name, imageId });
+  await UserInfo.findOneAndUpdate({ email: user.email }, otherUserInfo, {
+    upsert: true,
+  });
 
   return Response.json(true);
 }
 
-export async function GET() {
+export async function GET(req) {
   mongoose.connect(process.env.MONGO_URL);
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  if (!email) {
-    return Response.json({});
+
+  const url = new URL(req.url);
+  const _id = url.searchParams.get("_id");
+
+  if (_id) {
+    const user = await User.findOne({ _id }).lean();
+    const userInfo = await UserInfo.findOne({ email: user.email }).lean();
+    return Response.json({ ...user, ...userInfo });
+  } else {
+    const session = await getServerSession(authOptions);
+    const email = session?.user?.email;
+    if (!email) {
+      return Response.json({});
+    }
+    const user = await User.findOne({ email }).lean();
+    const userInfo = await UserInfo.findOne({ email }).lean();
+    return Response.json({ ...user, ...userInfo });
   }
-  const user = await User.findOne({ email }).lean();
-  const userInfo = await UserInfo.findOne({ email }).lean();
-  return Response.json({ ...user, ...userInfo });
 }

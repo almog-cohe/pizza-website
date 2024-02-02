@@ -1,11 +1,15 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "../AppContext";
 
 function Header() {
   const session = useSession();
 
   const status = session?.status;
+
+  const { cartProducts } = useContext(CartContext);
   return (
     <header className="flex items-center justify-between">
       <nav className="flex items-center gap-8 text-gray-500 font-semibold">
@@ -13,9 +17,9 @@ function Header() {
           ST PIZZA
         </Link>
         <Link href={"/"}>Home</Link>
-        <Link href={""}>Menu</Link>
-        <Link href={""}>About</Link>
-        <Link href={""}>Contact</Link>
+        <Link href={"/menu"}>Menu</Link>
+        <Link href={"/#about"}>About</Link>
+        <Link href={"/#contact"}>Contact</Link>
       </nav>
       <nav className="flex items-center gap-4 text-gray-500 font-semibold">
         {status === "authenticated" && (
@@ -44,6 +48,7 @@ function Header() {
             </Link>
           </>
         )}
+        <Link href={""}>Cart ({cartProducts.length})</Link>
       </nav>
     </header>
   );

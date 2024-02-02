@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html{scroll-behavior:smooth}
+
 section.hero {
   @apply grid;
   grid-template-columns: .4fr .6fr;
@@ -35,7 +37,7 @@ button {
   @apply flex justify-center gap-2 w-full text-gray-700 font-semibold;
   @apply border border-gray-300 rounded-xl px-6 py-2;
 }
-button[type="submit"], .submit {
+button[type="submit"], .submit, button.primary {
   @apply border-0 bg-primary text-white;
 }
 button[type="submit"]:disabled, .submit:disabled {

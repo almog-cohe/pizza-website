@@ -15,18 +15,18 @@ function UserForm({ user, onSave, userImage }) {
   const [city, setCity] = useState(user?.city || "");
   const [country, setCountry] = useState(user?.country || "");
   const [imageId, setImageId] = useState(
-    user?.imageId || "re4hdsbv5pwfn2ccgsxm"
+    user?.imageId || "re4hdsbv5pwfn2ccgsxm",
   );
   const [admin, setAdmin] = useState(user?.admin || false);
 
   const { data: loggedInUserData } = useProfile();
 
   function handleAddressChange(propName, value) {
-    if (propName === 'phone') setPhone(value)
-    if (propName === 'srteetAddress') setStreetAddress(value)
-    if (propName === 'postalCode') setPostalCode(value)
-    if (propName === 'city') setCity(value)
-    if (propName === 'country') setCountry(value)
+    if (propName === "phone") setPhone(value);
+    if (propName === "srteetAddress") setStreetAddress(value);
+    if (propName === "postalCode") setPostalCode(value);
+    if (propName === "city") setCity(value);
+    if (propName === "country") setCountry(value);
   }
 
   return (
@@ -83,7 +83,8 @@ function UserForm({ user, onSave, userImage }) {
         <label>Email</label>
         <input type="email" disabled value={user.email} />
         <AddressInputs
-          addressProps={{ phone, srteetAddress, postalCode, city, country }} setAddressProps={handleAddressChange}
+          addressProps={{ phone, srteetAddress, postalCode, city, country }}
+          setAddressProps={handleAddressChange}
         />
         {loggedInUserData.admin && (
           <div>

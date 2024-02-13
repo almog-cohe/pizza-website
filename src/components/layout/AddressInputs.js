@@ -8,14 +8,14 @@ function AddressInputs({ addressProps, setAddressProps }) {
         type="tel"
         placeholder="Phone number"
         value={phone}
-        onChange={(e) => setAddressProps('phone', e.target.value)}
+        onChange={(e) => setAddressProps("phone", e.target.value)}
       />
       <label>Street address</label>
       <input
         type="text"
         placeholder="Street address"
         value={srteetAddress}
-        onChange={(e) => setAddressProps('srteetAddress', e.target.value)}
+        onChange={(e) => setAddressProps("srteetAddress", e.target.value)}
       />
       <div className="flex gap-2">
         <div>
@@ -24,7 +24,7 @@ function AddressInputs({ addressProps, setAddressProps }) {
             type="text"
             placeholder="Postal code"
             value={postalCode}
-            onChange={(e) => setAddressProps('postalCode', e.target.value)}
+            onChange={(e) => setAddressProps("postalCode", e.target.value)}
           />
         </div>
         <div>
@@ -33,7 +33,7 @@ function AddressInputs({ addressProps, setAddressProps }) {
             type="text"
             placeholder="City"
             value={city}
-            onChange={(e) => setAddressProps('city', e.target.value)}
+            onChange={(e) => setAddressProps("city", e.target.value)}
           />
         </div>
       </div>
@@ -42,7 +42,7 @@ function AddressInputs({ addressProps, setAddressProps }) {
         type="text"
         placeholder="Country"
         value={country}
-        onChange={(e) => setAddressProps('country', e.target.value)}
+        onChange={(e) => setAddressProps("country", e.target.value)}
       />
     </>
   );

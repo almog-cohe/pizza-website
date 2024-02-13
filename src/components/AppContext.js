@@ -6,16 +6,16 @@ import toast from "react-hot-toast";
 export const CartContext = createContext({});
 
 export function cartProductPrice(cartProduct) {
-  let price = cartProduct.basePrice
+  let price = cartProduct.basePrice;
   if (cartProduct.size) {
-    price += cartProduct.size.price
+    price += cartProduct.size.price;
   }
   if (cartProduct.extras?.length > 0) {
     for (const extra of cartProduct.extras) {
-      price += extra.price
+      price += extra.price;
     }
   }
-  return price
+  return price;
 }
 
 export function AppProvider({ children }) {
@@ -42,7 +42,7 @@ export function AppProvider({ children }) {
       saveCartProductsToLocalStorage(newCartProducts);
       return newCartProducts;
     });
-    toast.success('Product removed')
+    toast.success("Product removed");
   }
 
   function saveCartProductsToLocalStorage(cartProducts) {

@@ -1,10 +1,11 @@
-function AddressInputs({ addressProps, setAddressProps }) {
-  const { phone, srteetAddress, postalCode, city, country } = addressProps;
+function AddressInputs({ addressProps, setAddressProps, disabled = false }) {
+  const { phone, streetAddress, postalCode, city, country } = addressProps;
 
   return (
     <>
       <label>Phone number</label>
       <input
+        disabled={disabled}
         type="tel"
         placeholder="Phone number"
         value={phone}
@@ -12,15 +13,17 @@ function AddressInputs({ addressProps, setAddressProps }) {
       />
       <label>Street address</label>
       <input
+        disabled={disabled}
         type="text"
         placeholder="Street address"
-        value={srteetAddress}
-        onChange={(e) => setAddressProps("srteetAddress", e.target.value)}
+        value={streetAddress}
+        onChange={(e) => setAddressProps("streetAddress", e.target.value)}
       />
       <div className="flex gap-2">
         <div>
           <label>Postal code</label>
           <input
+            disabled={disabled}
             type="text"
             placeholder="Postal code"
             value={postalCode}
@@ -30,6 +33,7 @@ function AddressInputs({ addressProps, setAddressProps }) {
         <div>
           <label>City</label>
           <input
+            disabled={disabled}
             type="text"
             placeholder="City"
             value={city}
@@ -39,6 +43,7 @@ function AddressInputs({ addressProps, setAddressProps }) {
       </div>
       <label>Country</label>
       <input
+        disabled={disabled}
         type="text"
         placeholder="Country"
         value={country}

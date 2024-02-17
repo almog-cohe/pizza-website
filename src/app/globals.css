@@ -22,7 +22,7 @@ input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="text"]:disabled,
 input[type="tel"]:disabled {
-  @apply bg-gray-300 text-gray-500 border-0 cursor-progress;
+  @apply bg-gray-300 text-gray-500 border-0 cursor-not-allowed;
 }
 
 #profileForm input[type="email"]:disabled {

@@ -3,11 +3,10 @@
 import { CartContext, cartProductPrice } from "@/components/AppContext";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import { useContext, useEffect, useState } from "react";
-import { CldImage } from "next-cloudinary";
-import Trash from "@/components/icons/Trash.js";
 import AddressInputs from "@/components/layout/AddressInputs";
 import useProfile from "@/components/UseProfile";
 import toast from "react-hot-toast";
+import CartProduct from "@/components/menu/CartProduct.js";
 
 function CartPage() {
   const { cartProducts, removeCartProducts } = useContext(CartContext);
@@ -24,10 +23,10 @@ function CartPage() {
 
   useEffect(() => {
     if (profileData) {
-      const { phone, srteetAddress, postalCode, city, country } = profileData;
+      const { phone, streetAddress, postalCode, city, country } = profileData;
       const addressFromProfile = {
         phone,
-        srteetAddress,
+        streetAddress,
         postalCode,
         city,
         country,
@@ -94,49 +93,11 @@ function CartPage() {
           )}
           {cartProducts?.length > 0 &&
             cartProducts.map((product, i) => (
-              <div
-                key={i + 1}
-                className="flex items-center gap-4 border-b py-4"
-              >
-                <div className="w-24">
-                  <CldImage
-                    className="rounded-md"
-                    width="200"
-                    height="200"
-                    src={product.imageId}
-                    alt={product.name + " image"}
-                  />
-                </div>
-                <div className="grow">
-                  <h3 className="font-semibold">{product.name}</h3>
-                  {product.size && (
-                    <div className="text-sm text-gray-900">
-                      Size: <span>{product.size.name}</span>
-                    </div>
-                  )}
-                  {product.extras?.length > 0 && (
-                    <div>
-                      {product.extras.map((extra, i) => (
-                        <div className="text-sm text-gray-700" key={i + 1}>
-                          {extra.name} ${extra.price}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="text-lg font-semibold">
-                  ${cartProductPrice(product)}
-                </div>
-                <div className="ml-2">
-                  <button
-                    type="button"
-                    onClick={() => removeCartProducts(i)}
-                    className="p-2"
-                  >
-                    <Trash />
-                  </button>
-                </div>
-              </div>
+              <CartProduct
+                product={product}
+                onRemove={removeCartProducts}
+                i={i}
+              />
             ))}
           <div className="py-2 justify-end items-center pr-16 flex">
             <div className=" text-gray-500">

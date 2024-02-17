@@ -10,7 +10,7 @@ import AddressInputs from "./AddressInputs";
 function UserForm({ user, onSave, userImage }) {
   const [userName, setUserName] = useState(user?.name || "");
   const [phone, setPhone] = useState(user?.phone || "");
-  const [srteetAddress, setStreetAddress] = useState(user?.srteetAddress || "");
+  const [streetAddress, setStreetAddress] = useState(user?.streetAddress || "");
   const [postalCode, setPostalCode] = useState(user?.postalCode || "");
   const [city, setCity] = useState(user?.city || "");
   const [country, setCountry] = useState(user?.country || "");
@@ -23,7 +23,7 @@ function UserForm({ user, onSave, userImage }) {
 
   function handleAddressChange(propName, value) {
     if (propName === "phone") setPhone(value);
-    if (propName === "srteetAddress") setStreetAddress(value);
+    if (propName === "streetAddress") setStreetAddress(value);
     if (propName === "postalCode") setPostalCode(value);
     if (propName === "city") setCity(value);
     if (propName === "country") setCountry(value);
@@ -63,7 +63,7 @@ function UserForm({ user, onSave, userImage }) {
         onSubmit={(e) =>
           onSave(e, {
             name: userName,
-            srteetAddress,
+            streetAddress,
             phone,
             postalCode,
             city,
@@ -83,7 +83,7 @@ function UserForm({ user, onSave, userImage }) {
         <label>Email</label>
         <input type="email" disabled value={user.email} />
         <AddressInputs
-          addressProps={{ phone, srteetAddress, postalCode, city, country }}
+          addressProps={{ phone, streetAddress, postalCode, city, country }}
           setAddressProps={handleAddressChange}
         />
         {loggedInUserData.admin && (

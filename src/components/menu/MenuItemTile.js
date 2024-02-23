@@ -10,10 +10,11 @@ function MenuItemTile({ onAddToCart, ...item }) {
       <div>
         <CldImage
           className="rounded-md"
-          width="20000"
-          height="20000"
-          src={imageId}
-          alt="item"
+          width="1024"
+          height="1024"
+          src={imageId || "food"}
+          alt={name}
+          priority
         />
       </div>
       <h4 className="font-semibold text-xl my-3">{name}</h4>

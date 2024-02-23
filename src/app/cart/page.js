@@ -94,6 +94,7 @@ function CartPage() {
           {cartProducts?.length > 0 &&
             cartProducts.map((product, i) => (
               <CartProduct
+                key={i + 1}
                 product={product}
                 onRemove={removeCartProducts}
                 i={i}

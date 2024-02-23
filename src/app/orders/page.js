@@ -32,10 +32,10 @@ function OrdersPage() {
         {orders?.length > 0 &&
           orders.map((order, i) => (
             <div
-              className="bg-gray-100 rounded-lg mb-2 p-4 flex items-center gap-4"
+              className="bg-gray-100 rounded-lg mb-2 p-4 md:flex items-center gap-4"
               key={i + 1}
             >
-              <div className="grow flex items-center gap-4">
+              <div className="grow md:flex items-center gap-4">
                 <div>
                   <div
                     className={

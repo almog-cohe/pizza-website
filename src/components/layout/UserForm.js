@@ -30,12 +30,18 @@ function UserForm({ user, onSave, userImage }) {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="md:flex gap-2">
       <div>
         <div className="bg-gray-50 p-1 rounded-md">
-          <div className="flex justify-center m-2">
+          <div className="flex justify-center m-2 max-w-80 h-auto">
             {imageId ? (
-              <CldImage width="140" height="140" src={imageId} alt="Avatar" />
+              <CldImage
+                width="1024"
+                height="1024"
+                src={imageId}
+                alt="Avatar"
+                priority
+              />
             ) : (
               // now it's not available because imageId default image
               <Image width="140" height="140" src={userImage} alt="Avatar" />
@@ -81,7 +87,7 @@ function UserForm({ user, onSave, userImage }) {
           onChange={(e) => setUserName(e.target.value)}
         />
         <label>Email</label>
-        <input type="email" disabled value={user.email} />
+        <input type="email" disabled value={user?.email} />
         <AddressInputs
           addressProps={{ phone, streetAddress, postalCode, city, country }}
           setAddressProps={handleAddressChange}
@@ -94,7 +100,7 @@ function UserForm({ user, onSave, userImage }) {
             >
               <input
                 checked={admin}
-                onClick={() => setAdmin(!admin)}
+                onChange={() => setAdmin(!admin)}
                 id="adminCb"
                 type="checkbox"
               />

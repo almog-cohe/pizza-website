@@ -49,7 +49,7 @@ function MenuItemsPage() {
                     className="rounded-md"
                     width="200"
                     height="200"
-                    src={item.imageId}
+                    src={item.imageId || "food"}
                     alt="item"
                   />
                 </div>

@@ -49,10 +49,10 @@ function OrderPage() {
       </div>
       {loadingOrder && <div>Loading order...</div>}
       {order && (
-        <div className="grid grid-cols-2 gap-16">
+        <div className="md:grid grid-cols-2 gap-16">
           <div>
             {order.cartProducts.map((product, i) => (
-              <CartProduct product={product} i={i} />
+              <CartProduct key={i + 1} product={product} i={i} />
             ))}
             <div className="text-right py-2 text-gray-500">
               Subtotal:{" "}

@@ -37,7 +37,7 @@ function MenuItemForm({ onSubmit, menuItem }) {
       }
       className="mt-8 max-w-md mx-auto"
     >
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <div>
           <EditableImage link={imageId} setLink={setImageId} />
         </div>

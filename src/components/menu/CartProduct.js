@@ -4,13 +4,13 @@ import { cartProductPrice } from "@/components/AppContext";
 
 function CartProduct({ product, onRemove, i }) {
   return (
-    <div key={i + 1} className="flex items-center gap-4 border-b py-4">
+    <div className="flex items-center gap-4 border-b py-4">
       <div className="w-24">
         <CldImage
           className="rounded-md"
           width="200"
           height="200"
-          src={product.imageId}
+          src={product.imageId || "food"}
           alt={product.name + " image"}
         />
       </div>

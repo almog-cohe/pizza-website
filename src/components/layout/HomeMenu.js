@@ -50,7 +50,7 @@ function HomeMenu() {
           mainHeader={"Out Best Sellers"}
         />
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="sm:grid sm:grid-cols-3 gap-4">
         {bestSellers?.length > 0 &&
           bestSellers.map((item, index) => (
             <MenuItem key={index + 1} {...item} />

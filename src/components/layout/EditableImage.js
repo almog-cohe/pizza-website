@@ -4,15 +4,15 @@ import { CldUploadButton } from "next-cloudinary";
 function EditableImage({ link, setLink }) {
   return (
     <div className="bg-gray-50 p-1 rounded-md">
-      <div className="flex justify-center m-2">
+      <div className="flex justify-center m-2 md:max-w-32 md:h-auto">
         {link && (
-          <CldImage width="100" height="100" src={link} alt="No image" />
+          <CldImage width="1024" height="1024" src={link} alt="No image" />
         )}
         {!link && <div>No image</div>}
       </div>
       <label>
         <CldUploadButton
-          className="text-gray-500 font-thin rounded-lg p-0"
+          className="text-gray-600 font-thin rounded-lg p-0"
           options={{
             multiple: false,
           }}
@@ -21,7 +21,7 @@ function EditableImage({ link, setLink }) {
           }}
           uploadPreset="jsdc6csm"
         >
-          Edit
+          Edit image
         </CldUploadButton>
       </label>
     </div>

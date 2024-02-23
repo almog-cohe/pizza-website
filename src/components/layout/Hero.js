@@ -4,7 +4,7 @@ import Right from "../icons/Right";
 function Hero() {
   return (
     <section className="hero mt-4">
-      <div className="py-12">
+      <div className="md:py-12 pt-2 pb-4">
         <h1 className="text-4xl font-semibold">
           Everything
           <br />
@@ -27,7 +27,7 @@ function Hero() {
           </button>
         </div>
       </div>
-      <div className="relative">
+      <div className="relative hidden md:block">
         <Image
           src={"/pizza.png"}
           alt={"pizza"}

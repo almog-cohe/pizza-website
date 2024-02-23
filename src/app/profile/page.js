@@ -31,7 +31,7 @@ function ProfilePage() {
   async function handleProfileInfoUpdate(e, data) {
     e.preventDefault();
     if (!isAdmin) {
-      data.admin = false
+      data.admin = false;
     }
     const savingPromise = fetch("/api/profile", {
       method: "PUT",

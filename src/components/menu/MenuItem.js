@@ -70,13 +70,16 @@ function MenuItem(menuItem) {
               className="p-3 overflow-y-scroll"
               style={{ maxHeight: "calc(100vh - 50px)" }}
             >
-              <CldImage
-                className="rounded-md mx-auto"
-                width="300"
-                height="300"
-                src={imageId}
-                alt={name}
-              />
+              <div className="w-72 h-auto mx-auto">
+                <CldImage
+                  className="rounded-md mx-auto"
+                  width="1024"
+                  height="1024"
+                  src={imageId || "food"}
+                  alt={name}
+                  priority
+                />
+              </div>
               <h2 className="text-lg text-center font-bold mb-2">{name}</h2>
               <p className="text-center text-gray-600 text-sm mb-2">
                 {description}
@@ -84,12 +87,15 @@ function MenuItem(menuItem) {
               {sizes?.length > 0 && (
                 <div className="py-2">
                   <h3 className="text-center text-gray-700">Pick your size</h3>
-                  {sizes.map((size) => (
-                    <label className="flex gap-2 p-4 rounded-md border mb-1">
+                  {sizes.map((size, i) => (
+                    <label
+                      key={i + 1}
+                      className="flex gap-2 p-4 rounded-md border mb-1"
+                    >
                       <input
                         type="radio"
                         name="size"
-                        onClick={() => setSelectedSize(size)}
+                        onChange={() => setSelectedSize(size)}
                         checked={selectedSize?.name === size.name}
                       />{" "}
                       {size.name} ${basePrice + size.price}
@@ -100,12 +106,15 @@ function MenuItem(menuItem) {
               {extraIngredientPrices?.length > 0 && (
                 <div className="py-2">
                   <h3 className="text-center text-gray-700">Any extras?</h3>
-                  {extraIngredientPrices.map((extraThing) => (
-                    <label className="flex gap-2 p-4 rounded-md border mb-1">
+                  {extraIngredientPrices.map((extraThing, i) => (
+                    <label
+                      key={i + 1}
+                      className="flex gap-2 p-4 rounded-md border mb-1"
+                    >
                       <input
                         type="checkbox"
                         name={extraThing.name}
-                        onClick={(e) => handleExtraThingClick(e, extraThing)}
+                        onChange={(e) => handleExtraThingClick(e, extraThing)}
                       />
                       {extraThing.name} ${extraThing.price}
                     </label>

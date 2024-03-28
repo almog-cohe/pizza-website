@@ -3,7 +3,7 @@ function AddToCartButton({ hasSizeOrExtras, onClick, basePrice }) {
     <button
       type="button"
       onClick={onClick}
-      className="bg-primary text-white rounded-full mt-4 px-8 py-2 border-none"
+      className="bg-primary text-white rounded-full mt-auto px-8 py-2 border-none"
     >
       {hasSizeOrExtras ? (
         <span>Add to cart (from ${basePrice})</span>

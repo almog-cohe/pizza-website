@@ -1,6 +1,5 @@
 import NextAuth, { getServerSession } from "next-auth";
 import { UserInfo } from "@/app/models/UserInfo.js";
-import { authOptions } from '@/app/api/authOptions'
 import bcrypt from "bcrypt";
 import { User } from "@/app/models/User";
 import * as mongoose from "mongoose";

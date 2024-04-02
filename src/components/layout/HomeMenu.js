@@ -47,7 +47,7 @@ function HomeMenu() {
       <div className="text-center mb-4">
         <SectionHeaders
           subHeader={"CHECK OUT"}
-          mainHeader={"Out Best Sellers"}
+          mainHeader={"Our Best Sellers"}
         />
       </div>
       <div className="sm:grid sm:grid-cols-3 gap-4">
